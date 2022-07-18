@@ -16,7 +16,7 @@ class ClientHandler:
 
     def __run(self):
         while self.conn:
-            data = self.conn.recv(8)
+            data = self.conn.recv(1024)
             if not data:
                 self.conn.close()
                 self.clients.remove(self)
