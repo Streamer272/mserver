@@ -9,10 +9,11 @@ class MServer(socket.socket):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.bind(('localhost', 4000))
+        self.bind(('localhost', 4096))
         self.listen()
 
     def run(self):
+        print("Server running")
         while True:
             conn, _ = self.accept()
             client = ClientHandler(conn, self.clients)

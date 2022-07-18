@@ -16,11 +16,17 @@ class ClientHandler:
 
     def __run(self):
         while self.conn:
-            data = self.conn.recv(1024)
+            data = self.conn.recv(8)
             if not data:
                 self.conn.close()
                 self.clients.remove(self)
                 break
 
+            print(f"{self.conn.getpeername()}: {data.decode()}")
             for client in self.clients:
-                client.conn.sendall(data)
+                try:
+                    client.conn.sendall(data)
+                except socket.error as e:
+                    print(f"error occurred: {e}")
+                    self.clients.remove(client)
+                    client.conn.close()
