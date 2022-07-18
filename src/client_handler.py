@@ -23,5 +23,4 @@ class ClientHandler:
                 break
 
             for client in self.clients:
-                if client is not self:
-                    client.conn.sendall(data)
+                client.conn.sendall(data)

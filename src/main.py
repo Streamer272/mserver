@@ -21,5 +21,5 @@ class MServer(socket.socket):
 
 
 if __name__ == '__main__':
-    server = MServer(socket.AF_INET, socket.SOCK_STREAM)
-    server.run()
+    with MServer(socket.AF_INET, socket.SOCK_STREAM) as server:
+        server.run()

@@ -1,3 +1,3 @@
 # MServer
 
-Server for [morse client](https://github.com/Streamer272/mclient)
+Server for [mclient](https://github.com/Streamer272/mclient)
