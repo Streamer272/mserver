@@ -16,7 +16,14 @@ class ClientHandler:
 
     def __run(self):
         while self.conn:
-            data = self.conn.recv(1024)
+            try:
+                data = self.conn.recv(1024)
+            except socket.error as e:
+                print(f"error occurred: {e}")
+                self.clients.remove(self)
+                self.conn.close()
+                break
+
             if not data:
                 self.conn.close()
                 self.clients.remove(self)
